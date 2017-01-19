@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="helloApp">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Hello AngularJS - Hello World</title>
+
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="shortcut icon" href="assets/img/favicon.ico">
+
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+	<script	src="assets/js/controllers.js"></script>
+</head>
+<body ng-controller="UsersController">
+	<header>
+		<h1>GitHub User Search Engine</h1>
+	</header>
+	<div class="container">
+		<div class="titleDiv">
+			<img src="assets/img/GitHub-Mark.png" height="84" width="84"></img>
+			<h1>GitHub Users</h1>
+		</div>
+		<div class="filterDiv">
+			<input type="text" class="form-control tooltipCtrl" name="searchKeyword" title="Enter at least 4 characters"
+				ng-model="searchKeyword" ng-minlength="4" ng-change="searchUsers()" placeholder="Type to search users"/>
+			<label class="control-label">Followers to show</label>
+			<select class= "form-control tooltipCtrl" ng-model="showFollowers" ng-init="showFollowers = '3'" title="Number of followers to show">
+			  <option value="3">3</option>
+			  <option value="5">5</option>
+			  <option value="10">10</option>
+			</select>
+		</div>
+		<table class="usersTable fade-in-out" ng-show="showTable()">
+			<tr class="tableHeader">
+				<th>User
+				</th>
+				<th>Followers
+				</th>
+			</tr>
+			<tr class="animate-repeat" ng-repeat="user in users">
+				<td ng-click="showModalRepo(user.repos_url)" class="user">
+					<img src="{{user.avatar_url}}" height="42" width="42"></img>
+					<label>{{user.login}}</label>
+				</td>
+				<td class="followersCell">
+					<ul>
+					    <li ng-repeat="follower in user.followers" ng-click="showModalRepo(follower.repos_url)">
+					        {{ follower.login }}
+					    </li>
+				    </ul>
+				</td>
+			</tr>
+		</table>
+		<div class="noResultsDiv fade-in-out" ng-if="users.length === 0">
+			<label>No results for {{searchKeyword}}</label>
+		</div>
+	</div>
+	<footer>
+	<a href="https://github.com/vaghi" target="_blank">
+		<img src="assets/img/Github_icon.png" height="42" width="42"></img>
+	</a>
+	<a href="https://www.linkedin.com/in/agustin-vaghi" target="_blank">
+		<img src="assets/img/Linkedin_icon.png" height="42" width="42"></img>
+	</a>
+	</footer>
+	<div class="modal"></div>
+	<div class="popup" id="myPopUp">
+		<div class="popup-content">
+			<div class="popup-header">
+				<span class="close">&times;</span>
+				<div class="titleDiv">
+					<img src="assets/img/repo.png" height="64" width="64"></img>
+					<h1>User Repositories</h1>
+				</div>
+			</div>
+			<div class="popup-inner-modal"></div>
+			<div class="popup-body">
+				<div class="filterDiv">
+					<input type="text" class="form-control" name="searchKeyword" placeholder="Type to search repositories"
+						ng-model="repoSearchKeyword" ng-disabled="!showTable() || repos.length === 0"/>
+				</div>
+				<table class="repoTable fade-in-out" ng-show="showTable()">
+					<tr class="tableHeader">
+						<th style="width: 30%">Name
+						</th>
+						<th style="width: 40%">Description
+						</th>
+						<th style="width: 40%">Last 3 Commits
+						</th>
+					</tr>
+					<tr class="animate-repeat" ng-repeat="repo in repos | filter: {name: repoSearchKeyword} as repoResults">
+						<td>
+							<label>{{repo.name}}</label>
+							<a href="{{repo.html_url}}">{{repo.html_url}}</a>
+						</td>
+						<td>
+							<label>{{repo.description}}</label>
+						</td>
+						<td class="commitsCell">
+							<div ng-show="repo.commit_0">
+								<label><b>SHA1:</b> {{repo.commit_0.sha}}</label>
+								<label><b>Owner:</b> {{repo.commit_0.commit.author.name}} - {{repo.commit_0.author.login}}</label>
+							</div>
+							<div ng-show="repo.commit_1">
+								<label><b>SHA1:</b> {{repo.commit_1.sha}}</label>
+								<label><b>Owner:</b> {{repo.commit_1.commit.author.name}} - {{repo.commit_1.author.login}}</label>
+							</div>
+							<div ng-show="repo.commit_2">
+								<label><b>SHA1:</b> {{repo.commit_2.sha}}</label>
+								<label><b>Owner:</b> {{repo.commit_2.commit.author.name}} - {{repo.commit_2.author.login}}</label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

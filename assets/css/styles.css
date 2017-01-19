@@ -1,0 +1,406 @@
+header {
+	position: fixed;
+    width: 100%;
+    
+    height: 70px;
+    background: #335C7D;
+    color: #fff;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-family: 'Neverwinter', sans-serif;
+    font-size: 62px;
+    font-style: italic;
+
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+
+    box-shadow: 0px 2px 5px 2px #ccc;
+    -moz-box-shadow: 0px 2px 5px 2px #ccc;
+    -webkit-box-shadow: 0px 2px 5px 2px #ccc;
+
+    z-index: 999;
+}
+
+header h1 {
+	margin: 0;
+}
+
+header.sticky {
+	font-size: 20px;
+	height: 40px;
+	background: #efc47D;
+	padding-left: 20px;
+	justify-content: flex-start;
+	text-align: left;
+}
+
+header.sticky h1 {
+    font-size: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+footer img {
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+.container {
+	top: 60px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.titleDiv {
+	display: flex;
+	align-items: center;
+	margin-top: 1%;
+    margin-bottom: 2%;
+	justify-content: center;
+}
+
+.tableHeader {
+	font-size: 22px;
+	text-shadow: 2px 2px #e5e5e5;
+}
+
+table {
+	width: 100%;
+}
+
+.usersTable img {
+	border-radius: 2em;
+}
+
+.usersTable td {
+	vertical-align: middle !important;
+}
+
+.usersTable th:first-child {
+	width: 50%;
+}
+
+.usersTable tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.usersTable tr:nth-child(even) td:first-child {
+    border-radius: 2em 0 0 2em;
+}
+
+.usersTable tr:nth-child(even) td:nth-child(2) {
+    border-radius: 0 2em 2em 0;
+}
+
+.repoTable tr:nth-child(even) {
+	background-color: #e0eeee;
+}
+.repoTable {
+	visibility: hidden;
+}
+
+.repoTable tr td:nth-child(2) {
+    width: 30%;
+}
+
+.repoTable label {
+	display: block;
+	margin: 0 10px 0 10px;
+}
+
+.repoTable a {
+	margin: 0 10px 0 10px;
+}
+
+.noResultsDiv {
+	width: 100%;
+    height: 50px;
+	justify-content: center;
+    align-items: center;
+	display: flex;
+	background-color: #f2f2f2;
+	font-size: large;
+}
+
+.noResultsDiv {
+	color: red;
+}
+
+table ul {
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+table img {
+    margin: 10px;
+}
+
+.commitsCell label {
+	font-weight: normal;
+}
+
+.user img {
+	cursor: pointer;
+}
+
+.user label {
+	cursor: pointer;	
+}
+
+.followersCell li {
+	cursor: pointer;
+}
+
+.filterDiv {
+	padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.filterDiv input {
+	width: 50%;
+	margin-left: 25px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.filterDiv input:focus {
+	border-bottom: solid 2px #969696;
+}
+
+.filterDiv select {
+	margin-left: 25px;
+	width: 65px;
+}
+
+.filterDiv img {
+	margin-left: 10px;
+}
+
+.filterDiv label {
+	margin-left: 2%;
+}
+
+.filterDiv select {
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	border-bottom: solid 2px #969696;
+}
+
+.popup-body .filterDiv {
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.popup-body .filterDiv input {
+	width: 25%;
+}
+
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.popup-inner-modal {
+    display:    none;
+    z-index:    1001;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.popup-header img {
+	margin-right: 1%;
+}
+
+.popup-content.loading {
+    overflow: hidden;   
+}
+
+.popup-content.loading .popup-inner-modal {
+    display: block;
+}
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.popup-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 1s
+    max-height: 80%;
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: 1s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.popup-body {padding: 2px 16px;}
+
+body.loading {
+    overflow: hidden;   
+}
+
+body.loading .modal {
+    display: block;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.animate-repeat {
+  line-height:30px;
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:30px;
+}
+
+.fade-in-out {
+  transition: 1s linear all;  
+  opacity: 1;
+}
+
+.fade-in-out.ng-hide {
+  opacity: 0;
+}
+
+@font-face {
+    font-family: "Neverwinter";
+    src: url(fonts/koliko-Regular.ttf);
+}
+
+.tooltip {
+    background-color:#000;
+    border:1px solid #fff;
+    padding:10px 15px;
+    width:200px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font-size:12px;
+ 
+    box-shadow:0 0 10px #000;
+
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000;
+}
+
+.popup-content::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.popup-content::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.popup-content::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #0FBF15;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
